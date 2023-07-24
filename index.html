@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dzikir.pop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="src/data.js"></script>
+    <script src="src/option.js"></script>
+    <script src="src/update.js"></script>
+  </head>
+  <body class="bg-[#0077ff]">
+    <div class="text-center">
+      <h1
+        class="text-white uppercase text-9xl font-bold mb-4 tracking-wide stroke-3"
+      >
+        Dzikir.pop
+      </h1>
+      <p
+        id="hitung"
+        class="text-white uppercase text-9xl font-bold mb-4 tracking-wide stroke-3"
+      >
+        0
+      </p>
+    </div>
+
+    <div class="flex justify-center items-center py-6">
+      <img src="berdoa1.png" id="doa1" class="w-72" />
+    </div>
+
+    <div class="container mx-auto">
+      <label
+        for="prov"
+        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+        >Select an option</label
+      >
+      <select
+        id="prov"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+      >
+        <option selected>Choose a Provinsi</option>
+      </select>
+    </div>
+
+    <div class="py-6">
+      <table
+        id="table_prov"
+        class="mx-auto table-auto border-collapse border border-slate-700 text-center container"
+      >
+        <thead>
+          <tr>
+            <th class="border-slate-950 bg-green-500">ID</th>
+            <th class="border-slate-950 bg-green-500">Provinsi</th>
+            <th class="border-slate-950 bg-green-500">Count</th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <script>
+      loadData();
+      loadDatab();
+      updateData();
+    
+
+      document.getElementById("doa1").addEventListener("click", function () {
+        const selectedProvince = document.getElementById("prov").value;
+        updateData(selectedProvince);
+      });
+    </script>
+
+    <script src="src/animasi.js"></script>
+  </body>
+</html>
