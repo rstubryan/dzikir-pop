@@ -45,29 +45,43 @@
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
         <!-- Opsi default -->
-        <option selected>Pilih sebuah Provinsi</option>
+        <option value="" selected>Pilih sebuah Provinsi</option>
       </select>
     </div>
 
-    <!-- Sebuah div untuk tabel (table_prov) -->
-    <div class="py-6">
-      <table
-        id="table_prov"
-        class="mx-auto table-auto border-collapse border border-slate-700 text-center container"
-      >
-        <!-- Header tabel -->
-        <thead>
-          <tr>
-            <th class="border-slate-950 bg-green-500">ID</th>
-            <th class="border-slate-950 bg-green-500">Provinsi</th>
-            <th class="border-slate-950 bg-green-500">Hitungan</th>
-          </tr>
-        </thead>
-      </table>
+    <div id="lead" class="container mx-auto">
+      <div class="flex items-center justify-center py-4">
+        <div class="w-full px-8 mx-auto container">
+          <details class="rounded-lg">
+            <summary
+              class="font-semibold bg-white px-4 py-2 text-lg cursor-pointer"
+            >
+              Leaderboard
+            </summary>
+            <div class="bg-blue-100">
+              <!-- Sebuah div untuk tabel (table_prov) -->
+              <div class="">
+                <table
+                  id="table_prov"
+                  class="mx-auto table-auto border-collapse border border-slate-700 text-center container"
+                >
+                  <!-- Header tabel -->
+                  <thead>
+                    <tr>
+                      <th class="border-slate-950 bg-green-500">ID</th>
+                      <th class="border-slate-950 bg-green-500">Provinsi</th>
+                      <th class="border-slate-950 bg-green-500">Skor</th>
+                    </tr>
+                  </thead>
+                </table>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
     </div>
 
     <!-- Kode JavaScript dimulai di sini -->
-
     <!-- Memanggil fungsi saat halaman dimuat -->
     <script>
       // Memuat data saat halaman dimuat

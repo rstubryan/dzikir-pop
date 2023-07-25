@@ -1,7 +1,7 @@
 // Fungsi untuk memuat data dari API dan menampilkan dalam tabel
 function loadData() {
   // Memuat data dari API menggunakan fetch
-  fetch("https://pop.serveo.net/dzikirpop/dzikir_api.php")
+  fetch("http://127.0.0.1:8080/dzikir-pop/dzikir_api.php")
     .then((response) => response.json()) // Parsing respons sebagai JSON
     .then((data) => {
       console.log(data); // Menampilkan data di console (opsional)
@@ -10,7 +10,7 @@ function loadData() {
         <tr>
           <th class="border-slate-950 bg-green-500">ID</th>
           <th class="border-slate-950 bg-green-500">Provinsi</th>
-          <th class="border-slate-950 bg-green-500">Count</th>
+          <th class="border-slate-950 bg-green-500">Skor</th>
         </tr>`;
 
       // Membuat baris tabel untuk setiap item dalam data
@@ -34,30 +34,44 @@ function loadData() {
 // Fungsi untuk memuat opsi provinsi dari API dan menambahkannya ke dalam elemen select
 function opsiProv() {
   // Memuat data dari API menggunakan fetch
-  fetch("https://pop.serveo.net/dzikirpop/dzikir_api.php")
+  fetch("http://127.0.0.1:8080/dzikir-pop/dzikir_api.php")
     .then((response) => response.json()) // Parsing respons sebagai JSON
     .then((data) => {
-      console.log(data); // Menampilkan data di console (opsional)
-
       let selectOptions = ""; // Membuat string kosong untuk menyimpan opsi value
+
+      // Mendapatkan data provinsi yang dipilih sebelumnya dari local storage
+      const selectedProvinceId = getSelectedProvinceId();
 
       // Membuat opsi untuk setiap item dalam data
       data.forEach((item) => {
-        selectOptions += `<option value="${item.id}" id="${item.id}">${item.province}</option>`;
+        selectOptions += `<option value="${item.id}" id="${item.id}" ${
+          item.id === selectedProvinceId ? "selected" : ""
+        }>${item.province}</option>`;
       });
 
       // Menambahkan opsi value ke dalam elemen <select> dengan id="prov"
-      document.getElementById("prov").innerHTML += selectOptions;
+      document.getElementById("prov").innerHTML = selectOptions;
 
-      // Menambahkan event listener untuk elemen <select> dengan id "prov" (opsional)
+      // Menambahkan event listener untuk elemen <select> dengan id "prov"
       document.getElementById("prov").addEventListener("change", function () {
-        // Logika yang ingin dijalankan saat opsi dipilih (bisa diisi sesuai kebutuhan)
+        const selectedId = this.value; // Use the selected value (province ID)
+        setSelectedProvinceId(selectedId); // Simpan data provinsi yang dipilih ke local storage
       });
     })
     .catch((error) => {
       // Menangani kesalahan jika gagal memuat data dari API
       console.error("Error:", error);
     });
+}
+
+// Fungsi untuk mendapatkan data provinsi yang dipilih dari local storage
+function getSelectedProvinceId() {
+  return localStorage.getItem("selectedProvinceId") || "";
+}
+
+// Fungsi untuk menyimpan data provinsi yang dipilih ke local storage
+function setSelectedProvinceId(selectedId) {
+  localStorage.setItem("selectedProvinceId", selectedId);
 }
 
 // Fungsi untuk load data secara berkala setiap 5 detik dan memanggil fungsi loadData
