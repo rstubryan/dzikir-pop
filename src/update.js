@@ -1,7 +1,6 @@
-// Fungsi untuk update data dan mengirimnya ke server
 function updateData(selectedId) {
   // Memanggil API untuk mendapatkan data berdasarkan selectedId
-  fetch(`https://dzikir.serveo.net/dzikirpop/dzikir_api.php?id=${selectedId}`)
+  fetch(`https://dp.serveo.net/dzikirpop/dzikir_api.php?id=${selectedId}`)
     .then((response) => response.json())
     .then((data) => {
       // Mengambil data pertama dari respons (asumsikan datanya adalah array)
@@ -21,21 +20,24 @@ function updateData(selectedId) {
       formData.append("province", province);
       formData.append("count", newCount);
 
-      // Mengirimkan data baru ke API menggunakan metode POST
-      fetch("https://dzikir.serveo.net/dzikirpop/dzikir_api.php", {
-        method: "POST",
-        body: formData,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          // Berhasil mengirimkan data, tampilkan respons dari server (data)
-          console.log("Success:", data);
-          // Tambahkan logika lain yang perlu dilakukan setelah berhasil mengupdate data count
+      // Tambahkan delay 15 detik sebelum mengirim data ke server
+      setTimeout(function () {
+        // Mengirimkan data baru ke API menggunakan metode POST
+        fetch("https://dp.serveo.net/dzikirpop/dzikir_api.php", {
+          method: "POST",
+          body: formData,
         })
-        .catch((error) => {
-          // Terjadi kesalahan saat mengirimkan data
-          console.error("Error:", error);
-        });
+          .then((response) => response.json())
+          .then((data) => {
+            // Berhasil mengirimkan data, tampilkan respons dari server (data)
+            console.log("Success:", data);
+            // Tambahkan logika lain yang perlu dilakukan setelah berhasil mengupdate data count
+          })
+          .catch((error) => {
+            // Terjadi kesalahan saat mengirimkan data
+            console.error("Error:", error);
+          });
+      }, 30000);
     })
     .catch((error) => {
       // Terjadi kesalahan saat memuat data dari API
