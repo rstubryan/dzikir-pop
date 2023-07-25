@@ -69,7 +69,7 @@
 
         // Memuat data dari API menggunakan fetch berdasarkan selectedId
         fetch(
-          `http://127.0.0.1:8080/dzikir-pop/dzikir_api.php?id=${selectedId}`
+          `https://dzikir.serveo.net/dzikirpop/dzikir_api.php?id=${selectedId}`
         )
           .then((response) => response.json())
           .then((data) => {

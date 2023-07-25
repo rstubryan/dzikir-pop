@@ -1,7 +1,7 @@
 // Fungsi untuk memuat data dari API dan menampilkan dalam tabel
 function loadData() {
   // Memuat data dari API menggunakan fetch
-  fetch("http://127.0.0.1:8080/dzikir-pop/dzikir_api.php")
+  fetch("https://dzikir.serveo.net/dzikirpop/dzikir_api.php")
     .then((response) => response.json()) // Parsing respons sebagai JSON
     .then((data) => {
       console.log(data); // Menampilkan data di console (opsional)
@@ -34,7 +34,7 @@ function loadData() {
 // Fungsi untuk memuat opsi provinsi dari API dan menambahkannya ke dalam elemen select
 function opsiProv() {
   // Memuat data dari API menggunakan fetch
-  fetch("http://127.0.0.1:8080/dzikir-pop/dzikir_api.php")
+  fetch("https://dzikir.serveo.net/dzikirpop/dzikir_api.php")
     .then((response) => response.json()) // Parsing respons sebagai JSON
     .then((data) => {
       let selectOptions = ""; // Membuat string kosong untuk menyimpan opsi value

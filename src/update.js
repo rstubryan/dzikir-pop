@@ -1,6 +1,7 @@
+// Fungsi untuk update data dan mengirimnya ke server
 function updateData(selectedId) {
   // Memanggil API untuk mendapatkan data berdasarkan selectedId
-  fetch(`http://127.0.0.1:8080/dzikir-pop/dzikir_api.php?id=${selectedId}`)
+  fetch(`https://dzikir.serveo.net/dzikirpop/dzikir_api.php?id=${selectedId}`)
     .then((response) => response.json())
     .then((data) => {
       // Mengambil data pertama dari respons (asumsikan datanya adalah array)
@@ -21,7 +22,7 @@ function updateData(selectedId) {
       formData.append("count", newCount);
 
       // Mengirimkan data baru ke API menggunakan metode POST
-      fetch("http://127.0.0.1:8080/dzikir-pop/dzikir_api.php", {
+      fetch("https://dzikir.serveo.net/dzikirpop/dzikir_api.php", {
         method: "POST",
         body: formData,
       })

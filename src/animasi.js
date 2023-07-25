@@ -32,3 +32,4 @@ window.onload = () => {
     sound.currentTime = 0; // Menyetel waktu audio kembali ke awal saat audio selesai diputar
   });
 };
+
