@@ -1,0 +1,65 @@
+function loadData() {
+  fetch("https://pop.serveo.net/dzikirpop/dzikir_api.php")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+
+      let tableData = `
+        <tr>
+          <th class="border-slate-950 bg-green-500">ID</th>
+          <th class="border-slate-950 bg-green-500">Provinsi</th>
+          <th class="border-slate-950 bg-green-500">Count</th>
+        </tr>`;
+
+      data.forEach((item) => {
+        tableData += `<tr class="border border-white bg-white">
+          <td class="border border-slate-700">${item.id}</td> 
+          <td class="border border-slate-700">${item.province}</td> 
+          <td class="border border-slate-700">${item.count}</td>
+        </tr>`;
+      });
+
+      document.getElementById("table_prov").innerHTML = tableData; // Mengganti innerHTML dengan data dan desain tabel baru
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
+
+// Fungsi untuk load data secara berkala setiap 5 detik
+function loadDataRealtime() {
+  loadData(); // Panggil fungsi loadData() pertama kali saat halaman dimuat
+
+  setInterval(() => {
+    loadData(); // Panggil fungsi loadData() setiap 5 detik
+  }, 10000); // Interval waktu selama 10 detik (10000 ms)
+}
+
+
+function loadDatab() {
+  fetch("https://pop.serveo.net/dzikirpop/dzikir_api.php")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+
+      let selectOptions = ""; // Membuat string kosong untuk menyimpan opsi value
+
+      data.forEach((item) => {
+        selectOptions += `<option value="${item.id}" id="${item.id}">${item.province}</option>`;
+      });
+
+      // Menambahkan opsi value ke dalam elemen <select> dengan id="prov"
+      document.getElementById("prov").innerHTML += selectOptions;
+
+      // Menambahkan event listener untuk elemen <select> dengan id "prov"
+      document.getElementById("prov").addEventListener("change", function () {
+        const selectedId = this.value; // Use the selected value (province ID)
+        if (selectedId) {
+          updateData(selectedId); // Call the updateData function with the selected province ID
+        }
+      });
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}

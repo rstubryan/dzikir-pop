@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Menetapkan encoding karakter dan viewport untuk desain responsif -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Menetapkan judul halaman -->
     <title>Dzikir.pop</title>
+    <!-- Memuat library Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Memuat skrip data.js dan update.js -->
     <script src="src/data.js"></script>
-    <script src="src/option.js"></script>
     <script src="src/update.js"></script>
   </head>
   <body class="bg-[#0077ff]">
+    <!-- Konten halaman dimulai di sini -->
+
+    <!-- Sebuah div untuk judul Dzikir.pop dan hitungan counter -->
     <div class="text-center">
       <h1
         class="text-white uppercase text-9xl font-bold mb-4 tracking-wide stroke-3"
@@ -24,51 +30,64 @@
       </p>
     </div>
 
+    <!-- Sebuah div untuk gambar (doa1) -->
     <div class="flex justify-center items-center py-6">
       <img src="berdoa1.png" id="doa1" class="w-72" />
     </div>
 
+    <!-- Sebuah kontainer untuk elemen select (prov) -->
     <div class="container mx-auto">
-      <label
-        for="prov"
-        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        >Select an option</label
+      <label for="prov" class="block mb-2 text-sm font-medium text-black"
+        >Pilih sebuah Provinsi</label
       >
       <select
         id="prov"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
       >
-        <option selected>Choose a Provinsi</option>
+        <!-- Opsi default -->
+        <option selected>Pilih sebuah Provinsi</option>
       </select>
     </div>
 
+    <!-- Sebuah div untuk tabel (table_prov) -->
     <div class="py-6">
       <table
         id="table_prov"
         class="mx-auto table-auto border-collapse border border-slate-700 text-center container"
       >
+        <!-- Header tabel -->
         <thead>
           <tr>
             <th class="border-slate-950 bg-green-500">ID</th>
             <th class="border-slate-950 bg-green-500">Provinsi</th>
-            <th class="border-slate-950 bg-green-500">Count</th>
+            <th class="border-slate-950 bg-green-500">Hitungan</th>
           </tr>
         </thead>
       </table>
     </div>
 
-    <script>
-      loadData();
-      loadDatab();
-      updateData();
-    
+    <!-- Kode JavaScript dimulai di sini -->
 
+    <!-- Memanggil fungsi saat halaman dimuat -->
+    <script>
+      // Memuat data saat halaman dimuat
+      loadData();
+      // Memuat data secara terus-menerus setiap 10 detik
+      loadDataRealtime();
+      // Memuat opsi provinsi saat halaman dimuat
+      opsiProv();
+      // Memanggil fungsi updateData saat halaman dimuat
+      updateData();
+
+      // Menambahkan event listener klik pada gambar doa1
+      // Saat diklik, memanggil fungsi updateData dengan nilai provinsi yang dipilih
       document.getElementById("doa1").addEventListener("click", function () {
         const selectedProvince = document.getElementById("prov").value;
         updateData(selectedProvince);
       });
     </script>
 
+    <!-- Memuat skrip animasi.js -->
     <script src="src/animasi.js"></script>
   </body>
 </html>
