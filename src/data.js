@@ -78,8 +78,8 @@ function setSelectedProvinceId(selectedId) {
 function loadDataRealtime() {
   loadData(); // Panggil fungsi loadData() pertama kali saat halaman dimuat
 
-  // Set interval untuk memanggil loadData setiap 10 detik (10000 ms)
+  // Set interval untuk memanggil loadData setiap 5 detik (5000 ms)
   setInterval(() => {
-    loadData(); // Panggil fungsi loadData() setiap 10 detik
-  }, 10000);
+    loadData(); // Panggil fungsi loadData() setiap 5 detik
+  }, 5000);
 }
